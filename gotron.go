@@ -162,11 +162,11 @@ func (gbw *BrowserWindow) mainEventSocket(w http.ResponseWriter, r *http.Request
 		// ReadMessages
 		var event SocketEvent
 		_, message, err := c.ReadMessage()
-		errz.Log(err, "ElectronSocket: [err]")
+		errz.Log(err)
 
 		//Handle Message
 		err = json.Unmarshal(message, &event)
-		errz.Fatal(err, "Unmashal: ")
+		errz.Fatal(err)
 		logger.Debug().Msgf("ElectronSocket: [received] %+v", event)
 
 		//Shutdown Event
@@ -242,13 +242,13 @@ func (gbw *BrowserWindow) onSocket(w http.ResponseWriter, r *http.Request) {
 		var event Event
 		_, message, err := c.ReadMessage()
 		if err != nil {
-			errz.Log(err, "ElectronSocket: [err]")
+			errz.Log(err)
 			break
 		}
 
 		//Handle Message
 		err = json.Unmarshal(message, &event)
-		errz.Fatal(err, "Unmashal: ")
+		errz.Fatal(err)
 		logger.Debug().Msgf("ElectronSocket: [received] %+v", event)
 
 		//Execute event function if exists
